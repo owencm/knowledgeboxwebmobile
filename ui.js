@@ -51,9 +51,16 @@ var ui = {
 
 	newQuestion: function() {
 
-		ui.renderQuestion({question: "Who is the president?", answer: "There"})
+		api.getRandomQa("1", function(response) {
+			console.log("hi");
+			if (response.success === true) {
+				ui.renderQuestion(response.qaitem);
+			} else {
+				console.log("You have no questions.");
+			}
+		});
 
 	}
 }
 
-this.ui = ui;
+ui.newQuestion()
