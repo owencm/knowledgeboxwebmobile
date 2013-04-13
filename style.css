@@ -1,0 +1,107 @@
+body {
+	font-family: Lato, sans-serif;
+	background-color: #ddd;
+	padding: 0 30px;
+}
+
+h1 {
+	font-size: 20pt;
+	text-align: center;
+	margin: 10px auto;
+	color: #414142;
+} 
+
+h1 #light {
+	font-weight: normal;
+	color: #21a9e0;
+}
+
+#qa {
+	font-size: 30pt;
+	height: 300px;
+	margin: 0 30px;
+	display: table-cell;
+	vertical-align: middle; 
+}
+
+#qaButton {
+	width: 220px;
+	cursor: pointer;
+	margin: 15px auto;
+	display: block;
+	border: 0px;
+	border-radius:6px;
+	color:#ffffff;
+	font-family:arial;
+	font-size:21px;
+	font-weight:normal;
+	padding: 10px 10px;
+	text-align: center;
+	text-decoration:none;
+}
+
+/*
+.qaButton:active {
+	background-color:#1a8aca;
+	position:relative;
+	top:1px;
+}*/
+
+#qaButton.rightButton {
+	box-shadow:inset 0px -2px 0px 0px #27bd5f;
+	background-color: #2bea73;
+}
+
+#qaButton.wrongButton {
+	box-shadow:inset 0px -2px 0px 0px #cd2121;
+	background-color: #e12a2a;
+}
+
+#qaButton.revealButton {
+	box-shadow:inset 0px -2px 0px 0px #327794;
+	background-color:#2aaae1;
+}
+
+footer {
+	text-align: center;
+	bottom: 0;
+	display: block;
+}
+
+#actionContainer {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.action {
+	display: inline-block;
+}
+
+.actionButton {
+	width: 30px;
+	height: 30px;
+	margin: 0 5px;
+	cursor: pointer;
+	display: block;
+	border: 0px;
+	box-shadow:inset 0px -2px 0px 0px #aaa;
+	background-color:#bbb;
+	border-radius:6px;
+	color:#999;
+	font-family:arial;
+	font-size:21px;
+	font-weight:normal;
+	padding: 10px 10px;
+	text-align: center;
+	text-decoration:none;
+}
+
+.actionButton:active {
+	background-color:#aaa;
+	position:relative;
+	top:1px;
+}
+
+.actionText {
+	color: #999;
+}
