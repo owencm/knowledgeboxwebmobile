@@ -130,6 +130,12 @@ var ui = {
 };
 
 window.addEventListener('load', function () {
+	
+	var refreshButton = document.getElementById('refreshButton');
+	refreshButton.addEventListener("click", function(e) {
+		ui.switchToNormal();
+		ui.goToNextQuestion();
+	});	
 
 	//check here
 	if (user.isLoggedIn()){
