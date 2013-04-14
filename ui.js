@@ -18,8 +18,14 @@ var ui = {
 		});
 
 		sourceButton = document.getElementById("source");
-		rightButton.addEventListener("click", function(e) {
+		sourceButton.addEventListener("click", function(e) {
 			ui.loadURL(qaitem.url);
+		});	
+
+		removeButton = document.getElementById("remove");
+		removeButton.addEventListener("click", function(e) {
+			api.forget(qaitem.id, function() {});
+			ui.newQuestion();
 		});	
 
 	},
@@ -55,27 +61,31 @@ var ui = {
 	},
 
 	newQuestion: function() {
+		ui.getNewQuestion(function(qaitem){ ui.renderQuestion(qaitem) });
+	},
 
-		api.getRandomQa("1", function(response) {
-			console.log("hi");
+	getNewQuestion: function(callback) {
+		api.getRandomQa(user.currentUser(), function(response) {
 			if (response.success === true) {
-				ui.renderQuestion(response.qaitem);
+				callback(response.qaitem);
 			} else {
 				console.log("You have no questions.");
 			}
 		});
-
 	},
 
 	switchToNormal: function() {
-		document.getElementById('registrationContainer').style.display = "none";
-		document.getElementById('loggedInUserContainer').style.display = "block";
-		document.getElementById('actionContainer').style.display = "block";
-		ui.newQuestion();
-		
+		ui.getNewQuestion(function(qaitem){
+			document.getElementById('registrationContainer').style.display = "none";
+			document.getElementById('loggedInUserContainer').style.display = "block";
+			document.getElementById('loadingContainer').style.display = "none";
+			document.getElementById('actionContainer').style.display = "block";
+			ui.renderQuestion(qaitem)
+		});
 	},
 
 	switchToLogin: function() {
+		document.getElementById('loadingContainer').style.display = "none";
 		document.getElementById('registrationContainer').style.display = "block";
 		document.getElementById('loggedInUserContainer').style.display = "none";
 		document.getElementById('actionContainer').style.display = "none";

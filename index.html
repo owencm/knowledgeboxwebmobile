@@ -14,13 +14,26 @@
       <h1>knowledge<span id="light">wallet</span></h1>
     </header>
 
+    <div id='loadingContainer'>
+      <img src='images/loading.png' id="spinner" />
+    </div>
+
     <div id='loggedInUserContainer'>
       <div id='qa'><div id='qaInner'>This is a long question, but what is the answer?</div></div>
 
       <div id='buttonContainer'>
 
       </div>
+
+      <div id='actionContainerContainer'>
+        <div id='actionContainer'>
+          <div class='action'><div id='source' class='actionButton source'></div><span class="actionText">Source</span></div>
+          <div class='action'><div id='remove' class='actionButton remove'></div><span class="actionText">Remove</span></div>
+        </div>
+      </div>
+
     </div>
+
     <div id='registrationContainer'>
       <h1>Login</h1>
       <form action='/login/' id='loginForm'>
@@ -37,13 +50,6 @@
         <input type='submit' value='Sign me up' class='qaButton'>
       </form>
     </div>
-
-    <footer>
-      <div id='actionContainer'>
-        <div class='action'><div id='source' class='actionButton source'></div><span class="actionText">Source</span></div>
-        <div class='action'><div id='remove' class='actionButton remove'></div><span class="actionText">Remove</span></div>
-      </div>
-    </footer>
 
   </body>
 </html>
