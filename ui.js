@@ -30,6 +30,14 @@ var ui = {
 
 	},
 
+	renderNoQuestions: function() {
+		document.getElementById('noQuestionsContainer').style.display = "block";
+		document.getElementById('registrationContainer').style.display = "none";
+		document.getElementById('loggedInUserContainer').style.display = "none";
+		document.getElementById('loadingContainer').style.display = "none";
+		document.getElementById('actionContainer').style.display = "none";
+	},
+
 	renderAnswer: function(qaitem) {
 
 		var qaInner = document.getElementById("qaInner");
@@ -50,37 +58,43 @@ var ui = {
 
 		wrongButton.addEventListener("click", function(e) {
 			e.preventDefault();
-			ui.newQuestion();
+			ui.nextQuestion();
 		});
 
 		rightButton.addEventListener("click", function(e) {
 			e.preventDefault();
-			ui.newQuestion();
+			ui.nextQuestion();
 		});
 
 	},
 
-	newQuestion: function() {
-		ui.getNewQuestion(function(qaitem){ ui.renderQuestion(qaitem) });
-	},
-
-	getNewQuestion: function(callback) {
-		api.getRandomQa(user.currentUser(), function(response) {
+	nextQuestion: function() {
+		ui.getNewQuestion(function(response){
 			if (response.success === true) {
-				callback(response.qaitem);
+				ui.renderQuestion(response.qaitem);
 			} else {
-				console.log("You have no questions.");
+				ui.renderNoQuestions();
 			}
 		});
 	},
 
+	getNewQuestion: function(callback) {
+		api.getRandomQa(user.currentUser(), function(response) {
+			callback(response);
+		});
+	},
+
 	switchToNormal: function() {
-		ui.getNewQuestion(function(qaitem){
-			document.getElementById('registrationContainer').style.display = "none";
-			document.getElementById('loggedInUserContainer').style.display = "block";
-			document.getElementById('loadingContainer').style.display = "none";
-			document.getElementById('actionContainer').style.display = "block";
-			ui.renderQuestion(qaitem)
+		ui.getNewQuestion(function(response){
+			if (response.success === true) {
+				document.getElementById('registrationContainer').style.display = "none";
+				document.getElementById('loggedInUserContainer').style.display = "block";
+				document.getElementById('loadingContainer').style.display = "none";
+				document.getElementById('actionContainer').style.display = "block";
+				ui.renderQuestion(response.qaitem)
+			} else {
+				ui.renderNoQuestions();
+			}
 		});
 	},
 
