@@ -101,6 +101,19 @@ footer {
 	top:1px;
 }
 
+.actionButton.source {
+	background-image: url('images/source.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.actionButton.remove {
+	background-image: url('images/remove.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+
+}
+
 .actionText {
 	color: #999;
 }
@@ -114,7 +127,7 @@ footer {
 	border: 1px solid #ccc;
 	padding: 5px;
 }::-webkit-input-placeholder {
-	color: #eee;
+	color: #ccc;
 	font-weight: 200;
 }
 
