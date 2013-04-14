@@ -12,6 +12,12 @@ h1 {
 	color: #414142;
 }
 
+h2 {
+	text-align: center;
+	margin: 15px auto;
+	color: #414142;
+}
+
 #registrationContainer {
 	display: none;
 }
@@ -183,4 +189,4 @@ h1 {
 	font-weight:normal;
 	padding:10px 40px;
 	text-decoration:none;
-}
+} 
