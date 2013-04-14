@@ -22,23 +22,8 @@ var ui = {
 			ui.loadURL(qaitem.url);
 		});	
 
-		removeButton = document.getElementById("remove");
-		removeButton.addEventListener("click", function(e) {
-			api.forget(qaitem.id, function() { 
-				api.resetQaListCache(function() {
-					ui.nextQuestion();
-				});
-			});
-		});	
+		ui.bindRemoveButton(qaitem);
 
-	},
-
-	renderNoQuestions: function() {
-		document.getElementById('noQuestionsContainer').style.display = "block";
-		document.getElementById('registrationContainer').style.display = "none";
-		document.getElementById('loggedInUserContainer').style.display = "none";
-		document.getElementById('loadingContainer').style.display = "none";
-		document.getElementById('actionContainer').style.display = "none";
 	},
 
 	renderAnswer: function(qaitem) {
@@ -61,17 +46,41 @@ var ui = {
 
 		wrongButton.addEventListener("click", function(e) {
 			e.preventDefault();
-			ui.nextQuestion();
+			ui.goToNextQuestion();
 		});
 
 		rightButton.addEventListener("click", function(e) {
 			e.preventDefault();
-			ui.nextQuestion();
+			ui.goToNextQuestion();
 		});
+
+		ui.bindRemoveButton(qaitem);
 
 	},
 
-	nextQuestion: function() {
+	bindRemoveButton: function(qaitem) {
+		var old_element = document.getElementById("remove");
+		var removeButton = old_element.cloneNode(true);
+		old_element.parentNode.replaceChild(removeButton, old_element);
+		removeButton.addEventListener("click", function(e) {
+			api.forget(qaitem.id, function() { 
+				console.log("Forgot "+qaitem.id);
+				api.resetQaListCache(function() {
+					ui.goToNextQuestion();
+				});
+			});
+		});	
+	},
+
+	renderNoQuestions: function() {
+		document.getElementById('noQuestionsContainer').style.display = "block";
+		document.getElementById('registrationContainer').style.display = "none";
+		document.getElementById('loggedInUserContainer').style.display = "none";
+		document.getElementById('loadingContainer').style.display = "none";
+		document.getElementById('actionContainer').style.display = "none";
+	},
+
+	goToNextQuestion: function() {
 		ui.getNewQuestion(function(response){
 			if (response.success === true) {
 				ui.renderQuestion(response.qaitem);
