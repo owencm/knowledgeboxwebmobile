@@ -89,8 +89,10 @@ var ui = {
 	},
 
 	getNewQuestion: function(callback) {
-		api.getRandomQa(user.currentUser(), function(response) {
-			callback(response);
+		api.resetQaListCache(function() {
+			api.getRandomQa(user.currentUser(), function(response) {
+				callback(response);
+			});
 		});
 	},
 
