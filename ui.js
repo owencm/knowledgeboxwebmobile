@@ -87,6 +87,7 @@ var ui = {
 	switchToNormal: function() {
 		ui.getNewQuestion(function(response){
 			if (response.success === true) {
+				document.getElementById('noQuestionsContainer').style.display = "none";
 				document.getElementById('registrationContainer').style.display = "none";
 				document.getElementById('loggedInUserContainer').style.display = "block";
 				document.getElementById('loadingContainer').style.display = "none";
@@ -99,6 +100,7 @@ var ui = {
 	},
 
 	switchToLogin: function() {
+		document.getElementById('noQuestionsContainer').style.display = "none";
 		document.getElementById('loadingContainer').style.display = "none";
 		document.getElementById('registrationContainer').style.display = "block";
 		document.getElementById('loggedInUserContainer').style.display = "none";
