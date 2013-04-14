@@ -24,8 +24,11 @@ var ui = {
 
 		removeButton = document.getElementById("remove");
 		removeButton.addEventListener("click", function(e) {
-			api.forget(qaitem.id, function() {});
-			ui.newQuestion();
+			api.forget(qaitem.id, function() { 
+				api.resetQaListCache(function() {
+					ui.nextQuestion();
+				});
+			});
 		});	
 
 	},
