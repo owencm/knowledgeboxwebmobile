@@ -17,6 +17,11 @@ var ui = {
 			ui.renderAnswer(qaitem);
 		});
 
+		sourceButton = document.getElementById("source");
+		rightButton.addEventListener("click", function(e) {
+			ui.loadURL(qaitem.url);
+		});	
+
 	},
 
 	renderAnswer: function(qaitem) {
@@ -74,9 +79,15 @@ var ui = {
 		document.getElementById('loggedInUserContainer').style.display = "none";
 		document.getElementById('actionContainer').style.display = "none";
 	},
+
+	loadURL: function(url) {
+    	navigator.app.loadUrl(url, { openExternal:true });
+    	return false;
+	} 
 };
 
 window.addEventListener('load', function () {
+
 	//check here
 	if (user.isLoggedIn()){
 		ui.switchToNormal();
