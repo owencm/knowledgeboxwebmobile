@@ -17,12 +17,26 @@ var ui = {
 			ui.renderAnswer(qaitem);
 		});
 
-		sourceButton = document.getElementById("source");
+		//Replace the element to clear old listeners
+		var old_element = document.getElementById("source");
+		var sourceButton = old_element.cloneNode(true);
+		old_element.parentNode.replaceChild(sourceButton, old_element);
 		sourceButton.addEventListener("click", function(e) {
 			ui.loadURL(qaitem.url);
 		});	
 
-		ui.bindRemoveButton(qaitem);
+		//Replace the element to clear old listeners
+		var old_element = document.getElementById("remove");
+		var removeButton = old_element.cloneNode(true);
+		old_element.parentNode.replaceChild(removeButton, old_element);
+		removeButton.addEventListener("click", function(e) {
+			api.forget(qaitem.id, function() { 
+				console.log("Forgot "+qaitem.id);
+				api.resetQaListCache(function() {
+					ui.goToNextQuestion();
+				});
+			});
+		});	
 
 	},
 
@@ -54,22 +68,6 @@ var ui = {
 			ui.goToNextQuestion();
 		});
 
-		ui.bindRemoveButton(qaitem);
-
-	},
-
-	bindRemoveButton: function(qaitem) {
-		var old_element = document.getElementById("remove");
-		var removeButton = old_element.cloneNode(true);
-		old_element.parentNode.replaceChild(removeButton, old_element);
-		removeButton.addEventListener("click", function(e) {
-			api.forget(qaitem.id, function() { 
-				console.log("Forgot "+qaitem.id);
-				api.resetQaListCache(function() {
-					ui.goToNextQuestion();
-				});
-			});
-		});	
 	},
 
 	renderNoQuestions: function() {
@@ -120,8 +118,12 @@ var ui = {
 	},
 
 	loadURL: function(url) {
-    	navigator.app.loadUrl(url, { openExternal:true });
-    	return false;
+		try { // If we're in phone gap, launch in the browser
+	    	navigator.app.loadUrl(url, { openExternal:true });
+	    	return false;
+	    } catch (e) {
+	    	window.open(url,'_blank');
+	    }
 	} 
 };
 
