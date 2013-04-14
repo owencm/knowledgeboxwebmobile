@@ -60,7 +60,32 @@ var ui = {
 			}
 		});
 
-	}
-}
+	},
 
-ui.newQuestion()
+	switchToNormal: function() {
+		document.getElementById('registrationContainer').style.display = "none";
+		document.getElementById('loggedInUserContainer').style.display = "block";
+		document.getElementById('actionContainer').style.display = "block";
+		
+	},
+
+	switchToLogin: function() {
+		document.getElementById('registrationContainer').style.display = "block";
+		document.getElementById('loggedInUserContainer').style.display = "none";
+		document.getElementById('actionContainer').style.display = "none";
+	},
+};
+
+window.addEventListener('load', function () {
+	//check here
+	if (user.isLoggedIn()){
+		ui.switchToNormal();
+		ui.newQuestion();
+	}
+	else
+	{
+		//register
+		ui.switchToLogin();
+	}
+		
+});

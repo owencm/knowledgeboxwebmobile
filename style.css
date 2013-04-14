@@ -118,3 +118,38 @@ footer {
 .actionText {
 	color: #999;
 }
+
+.loginTextBox {
+	display:block;
+	margin: 0 auto 5px auto;
+	width: 250px;
+	/*height: 10px;*/
+	font-size: 13pt;
+	border: 1px solid #ccc;
+	padding: 5px;
+}::-webkit-input-placeholder {
+	color: #eee;
+	font-weight: 200;
+}
+
+.qaButton {
+	cursor: pointer;
+	margin: 15px auto;
+	display: block;
+	border: 0px;
+	box-shadow:inset 0px -2px 0px 0px #327794;
+	background-color:#2aaae1;
+	border-radius:6px;
+	color:#ffffff;
+	font-family:arial;
+	font-size:21px;
+	font-weight:normal;
+	padding:10px 40px;
+	text-decoration:none;
+}
+
+h1 {
+	text-align: center;
+	margin: 15px auto;
+	color: #414142;
+}
