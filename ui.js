@@ -66,6 +66,7 @@ var ui = {
 		document.getElementById('registrationContainer').style.display = "none";
 		document.getElementById('loggedInUserContainer').style.display = "block";
 		document.getElementById('actionContainer').style.display = "block";
+		ui.newQuestion();
 		
 	},
 
@@ -80,12 +81,12 @@ window.addEventListener('load', function () {
 	//check here
 	if (user.isLoggedIn()){
 		ui.switchToNormal();
-		ui.newQuestion();
 	}
 	else
 	{
 		//register
 		ui.switchToLogin();
+		user.addListenersToForms();
 	}
 		
 });

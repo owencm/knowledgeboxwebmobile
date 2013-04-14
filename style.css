@@ -5,13 +5,12 @@ body {
 }
 
 h1 {
-	font-size: 20pt;
 	text-align: center;
-	margin: 10px auto;
+	margin: 15px auto;
 	color: #414142;
-} 
+}
 
-h1 #light {
+#light {
 	font-weight: normal;
 	color: #21a9e0;
 }
@@ -133,10 +132,4 @@ footer {
 	font-weight:normal;
 	padding:10px 40px;
 	text-decoration:none;
-}
-
-h1 {
-	text-align: center;
-	margin: 15px auto;
-	color: #414142;
 }
